@@ -1,6 +1,7 @@
 import json
 import random
 from os import getcwd
+import threading
 
 
 class SimpleSaverJsonFile():
@@ -25,9 +26,8 @@ class SimpleSaverJsonFile():
                   encoding="utf-8") as file:
             json.dump(dateForJson, file)
 
-    def start(self):
+    def start(self, mutex=threading.Lock(), threadFlag=False):
         _dateForJson = []
-
         for _ in range(1000):
             _dateForJson.append({
                 "user_id":
@@ -41,6 +41,8 @@ class SimpleSaverJsonFile():
             })
 
         self.json_dump(_dateForJson)
+        if (threadFlag):
+            mutex.release()
 
 
 if __name__ == "__main__":

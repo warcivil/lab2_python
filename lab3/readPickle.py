@@ -1,5 +1,6 @@
 import pickle
 from os import getcwd
+import threading
 
 
 class ReadPickleLab():
@@ -53,10 +54,14 @@ class ReadPickleLab():
         print("--------------best expensive gpu--------------")
         print()
 
-    def start(self):
+    def start(self, mutex=threading.Lock(), threadFlag=False):
+        if (threadFlag):
+            mutex.acquire()
         self.top_truency()
         self.very_effectly_user()
         self.top_gpu()
+        if (threadFlag):
+            mutex.release()
 
 
 if __name__ == '__main__':

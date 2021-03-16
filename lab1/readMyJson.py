@@ -1,5 +1,6 @@
 import json
 import os
+import threading
 
 
 class readMyJsonLab():
@@ -58,7 +59,16 @@ class readMyJsonLab():
 
         print("================]top 10 discipline[================")
 
-    def start(self):  # запуск 3 методов
+    def start(self,
+              mutex=threading.Lock(),
+              threadFlag=False):  # запуск 3 методов
+
+        if (threadFlag):
+            m = mutex.acquire()
+
         self.top_truency()
         self.academic()
         self.progulshiki()
+
+        if (threadFlag):
+            mutex.release()

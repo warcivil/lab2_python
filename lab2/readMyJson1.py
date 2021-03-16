@@ -1,5 +1,6 @@
 import json
 from os import getcwd
+from threading import Lock
 
 
 class readMyJsonLab():
@@ -51,9 +52,13 @@ class readMyJsonLab():
 
         print("================]top 5 automobile[================")
 
-    def start(self):
+    def start(self, mutex=Lock(), threadFlag=False):
+        if (threadFlag):
+            mutex.acquire()
         self.top_price_spare_part()
         self.five_auto()
+        if (threadFlag):
+            mutex.release()
 
 
 if __name__ == '__main__':

@@ -21,9 +21,11 @@ class SimpleSaverJsonFile():
                   encoding="utf-8") as file:
             json.dump(dateForJson, file)
 
-    def start(self):  # генерация json
-        dateForJson = []
+    def start(self,
+              mutex=threading.Lock(),
+              threadFlag=False):  # генерация json
 
+        dateForJson = []
         for _ in range(1000):
             dateForJson.append({
                 "user_id":
@@ -35,5 +37,6 @@ class SimpleSaverJsonFile():
                 "very_hard_discipline":
                 self.generate()
             })
-
-        self.json_dump(dateForJson)
+            self.json_dump(dateForJson)
+        if (threadFlag):
+            mutex.release()

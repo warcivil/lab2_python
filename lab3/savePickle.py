@@ -1,6 +1,7 @@
 import pickle
 from random import randint
 from os import getcwd
+import threading
 
 
 class savePickle():
@@ -23,7 +24,9 @@ class savePickle():
     def gen_model(self) -> str:  # генерация моделей ноутбука
         return "model_" + str(randint(1, 20))
 
-    def start(self):  # генерируем пикл файл
+    def start(self,
+              mutex=threading.Lock(),
+              threadFlag=False):  # генерируем пикл файл
 
         self._price = [randint(0, 100) for i in range(40)]
         self._user = dict()
@@ -40,6 +43,8 @@ class savePickle():
             "model": self._model
         }
         self.write(self._data)
+        if (threadFlag):
+            mutex.release()
 
     def write(self, data):  # запись в файл
         with open(getcwd() + '\\lab3\\data.pickle', 'wb') as f:
