@@ -24,27 +24,13 @@ while userAuth:
     elif (command[0] == "send"):
         title = input("тема: ")
         message = input("сообщение: ")
-        outputMes = ""
-        outputTitle = ""
-        for i in title:
-            if (i == "."):
-                break
-            else:
-                outputTitle += i
-        for i in message:
-            if (i == "."):
-                break
-            else:
-                outputMes += i
-        del message
-        del title
         with open(os.getcwd() + "/" + "msg" + "/" + command[1] + ".txt",
                   "w") as file:
             file.write("--------title--------")
-            file.write("\n" + outputTitle)
+            file.write("\n" + title.split(".")[0])
             file.write("\n--------title--------\n")
             file.write("\n-------message-------")
-            file.write("\n" + outputMes)
+            file.write("\n" + message.split(".")[0])
             file.write("\n-------message-------\n")
     elif (command[0] == "exit"):
         print("bye bye")
