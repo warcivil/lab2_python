@@ -27,10 +27,13 @@ while userAuth:
         except:
             print("такого файла нет")
     elif (command[0] == "retr"):
-        shutil.move(command[1], os.getcwd())
+        shutil.move(command[1], os.getcwd() + "/" + command[2])
     elif (command[0] == "help"):
-        print("info file получить дату создания и Mime тип файла и тип файла")
+        print("---------------------------------")
+        print("info file получить дату создания и Mime тип файла и размер")
         print("list вывести все файлы в папке")
+        print("retr file, file2 - переместить")
+        print("---------------------------------")
 
     elif (command[0] == "exit"):
         print("bye bye")
