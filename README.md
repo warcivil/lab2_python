@@ -1,3 +1,3 @@
-# lab2_python
+Lab3 python
 
-для запуска запустить starterpack.py 
+все скрипты в папке
