@@ -1,7 +1,0 @@
---------title--------
-hello tomas
---------title--------
-
--------message-------
-my name is
--------message-------

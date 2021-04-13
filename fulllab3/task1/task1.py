@@ -8,6 +8,12 @@ with open("pass.txt", "r") as f:
 info = input().split(" ")
 userAuth = True if "auth" in info and date[0] == info[1] and date[1] == info[
     2] else False
+while(not userAuth): 
+    print("bad login")   
+    info = input().split(" ")
+    userAuth = True if "auth" in info and date[0] == info[1] and date[1] == info[
+        2] else False
+
 while userAuth:
     command = input("Введите команду ").split(" ")
     if (command[0] == "list"):
@@ -27,7 +33,8 @@ while userAuth:
         except:
             print("такого файла нет")
     elif (command[0] == "retr"):
-        shutil.move(command[1], os.getcwd() + "/" + command[2])
+        for i in range(1, len(command)):
+            shutil.move(os.getcwd() + "/files/" + command[i], os.getcwd() + "/")
     elif (command[0] == "help"):
         print("---------------------------------")
         print("info file получить дату создания и Mime тип файла и размер")

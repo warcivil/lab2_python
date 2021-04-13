@@ -16,6 +16,7 @@ def scan_port(ip, port):
 ip = input()
 if (ip == ""):
     ip = "8.8.8.8"
+    print(ip)
 for i in range(1, 100):
     potoc = threading.Thread(target=scan_port, args=(ip, i))
     potoc.start()
